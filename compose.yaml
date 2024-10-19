@@ -1,0 +1,35 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: parking-lot-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_parking_lot
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./scripts:/docker-entrypoint-initdb.d
+    networks:
+      - parking-lot-network
+
+  app:
+    build: .
+    container_name: parking-lot-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    links:
+      - "db"
+    environment:
+      - RAILWAY_ENVIRONMENT=production
+    networks:
+      - parking-lot-network
+
+volumes:
+  db_data:
+
+networks:
+  parking-lot-network:
+    driver: bridge

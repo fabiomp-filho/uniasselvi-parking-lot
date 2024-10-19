@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+    <style>
+
+        .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow {
+            animation: slideInFromBottom 1s ease;
+        }
+
+        @keyframes slideInFromBottom {
+            0% {
+                transform: translateY(50%);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .successButton {
+            background-color: #28a745;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function closeModal() {
+            PF('incluirVaga').hide();
+        }
+    </script>
+</h:head>
+
+<h:body>
+    <p:dialog header="Adicionar nova vaga" widgetVar="incluirVaga" modal="true" resizable="false">
+        <h:form id="vagaForm" styleClass="p-2 ">
+            <div class="d-flex flex-column gap-1">
+                <p:outputLabel for="numero" value="Número da Vaga"/>
+                <p:inputNumber id="numero" value="#{vagaBean.numero}" required="true"
+                               requiredMessage="Número é obrigatório"/>
+            </div>
+            <br/><br/>
+            <div class="d-flex gap-4 justify-content-end mt-2">
+                <p:commandButton styleClass="ui-button-secondary"
+                                 value="Cancelar"
+                                 type="reset"
+                                 onclick="closeModal(); return false"/>
+                <p:commandButton value="Adicionar" action="#{vagaBean.criarVaga}"
+                                 styleClass="ui-button-success"
+
+                />
+            </div>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

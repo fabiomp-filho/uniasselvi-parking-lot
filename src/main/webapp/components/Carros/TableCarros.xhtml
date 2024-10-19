@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:body>
+    <p:dataTable id="tabelaCarros" value="#{carroBean.carros}" var="carro" paginator="true" rows="9"
+                 paginatorPosition="bottom">
+        <p:column headerText="Placa">
+            <h:outputText value="#{carro.placa}"/>
+        </p:column>
+        <p:column headerText="Modelo">
+            <h:outputText value="#{carro.modelo}"/>
+        </p:column>
+        <p:column headerText="Cor">
+            <h:outputText value="#{carro.cor}"/>
+        </p:column>
+        <p:column headerText="Vaga">
+            <h:outputText value="#{carro.vaga.numero}"/>
+        </p:column>
+    </p:dataTable>
+</h:body>
+</html>

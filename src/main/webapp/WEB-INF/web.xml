@@ -5,7 +5,7 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>Login.xhtml</welcome-file>
+        <welcome-file>Home.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- JSF configuration -->
@@ -19,10 +19,16 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
+    <listener>
+        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+    </listener>
     <servlet-mapping>
         <servlet-name>FacesServlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
+    <session-config>
+        <session-timeout>120</session-timeout> <!-- Tempo em minutos -->
+    </session-config>
 
 </web-app>

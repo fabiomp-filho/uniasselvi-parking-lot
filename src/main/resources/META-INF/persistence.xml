@@ -5,28 +5,21 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="jsfPU" transaction-type="JTA">
-        <!-- Provedor de Persistência (Hibernate) -->
+    <persistence-unit name="jsfPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <!-- Suas entidades JPA -->
-        <class>fabio.uniasselvi.com.br.peoplemanager.entities.User</class>
+        <class>fabio.uniasselvi.com.br.parkinglot.entities.Carro</class>
+        <class>fabio.uniasselvi.com.br.parkinglot.entities.Vaga</class>
 
         <properties>
-            <!-- Configurações de conexão -->
-            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/db_people_manager?createDatabaseIfNotExist=true&amp;serverTimezone=America/Sao_Paulo"/>
-            <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="root"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://parking-lot-db:3306/db_parking_lot?createDatabaseIfNotExist=true"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
 
-            <!-- Dialeto do Hibernate para MySQL -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-
-            <!-- Configuração de criação do esquema -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-
-            <!-- Outras configurações opcionais -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>

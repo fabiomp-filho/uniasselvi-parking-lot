@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+
+    <style>
+
+        .ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow {
+            animation: slideInFromBottom 1s ease;
+        }
+
+        @keyframes slideInFromBottom {
+            0% {
+                transform: translateY(50%);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .successButton {
+            background-color: #28a745;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function closeModal() {
+            PF('incluirCarro').hide();
+        }
+    </script>
+</h:head>
+
+<h:body>
+    <p:dialog header="Adicionar novo carro" widgetVar="incluirCarro" modal="true" resizable="false">
+        <h:form id="carroForm" styleClass="p-2 ">
+            <div class="d-flex flex-column gap-1">
+                <p:outputLabel for="placa" value="Placa"/>
+                <p:inputText id="placa" value="#{carroBean.placa}" required="true"
+                             requiredMessage="Placa é obrigatório"/>
+            </div>
+            <div class="d-flex flex-column gap-1">
+                <p:outputLabel for="modelo" value="Modelo"/>
+                <p:inputText id="modelo" value="#{carroBean.modelo}" required="true"
+                             requiredMessage="Modelo é obrigatório"/>
+            </div>
+            <div class="d-flex flex-column gap-1">
+                <p:outputLabel for="cor" value="Cor"/>
+                <p:inputText id="cor" value="#{carroBean.cor}" required="true"
+                             requiredMessage="Cor é obrigatória"/>
+            </div>
+            <div class="d-flex flex-column gap-1">
+                <p:outputLabel for="vaga" value="Número da Vaga"/>
+                <p:selectOneMenu id="vaga" value="#{carroBean.vagaId}" required="true"
+                                 requiredMessage="Vaga é obrigatória">
+                    <f:selectItem itemLabel="Selecione uma Vaga" itemValue=""/>
+                    <f:selectItems value="#{carroBean.vagasDisponiveis}" var="vaga"
+                                   itemLabel="#{vaga.numero}" itemValue="#{vaga.id}"/>
+                </p:selectOneMenu>
+            </div>
+            <br/><br/>
+            <div class="d-flex gap-4 justify-content-end mt-2">
+                <p:commandButton styleClass="ui-button-secondary"
+                                 value="Cancelar"
+                                 type="reset"
+                                 onclick="closeModal(); return false"/>
+                <p:commandButton value="Adicionar" action="#{carroBean.criarCarro}"
+                                 styleClass="ui-button-success"
+                />
+            </div>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

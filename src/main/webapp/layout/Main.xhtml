@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      lang="pt-br">
+
+<h:head>
+    <h:outputStylesheet name="webjars/bootstrap/5.3.2/css/bootstrap.min.css"/>
+
+    <h:outputScript name="webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"/>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #d0d0d0;
+        }
+
+        .custom-container {
+            display: grid;
+            grid-template-rows: 60px 1fr 30px;
+        }
+
+        .custom-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            gap: 4px;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .title {
+            margin-left: 40px;
+        }
+
+        .custom-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: #333;
+            color: white;
+        }
+
+        .custom-footer p {
+            margin-bottom: 0;
+        }
+
+        .custom-content {
+            border-radius: 10px;
+            background-color: #f8f8ff;
+            margin: 20px;
+        }
+
+        .nav-custom {
+            display: flex;
+            margin-right: 100px;
+            text-align: center;
+        }
+
+        .nav-custom a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-custom a:hover {
+            text-decoration: underline;
+        }
+
+        .active-link {
+            text-decoration: underline !important;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.nav-custom a');
+            let currentPath = window.location.pathname;
+
+            if (currentPath === "/" || currentPath === "/Home.xhtml") {
+                currentPath = "/parking_lot/Home.xhtml";
+            }
+
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active-link');
+                }
+            });
+
+        });
+    </script>
+</h:head>
+
+<h:body class="custom-container">
+
+
+    <div class="custom-header ">
+        <div class="title">
+            <h1>Parking Lot</h1>
+        </div>
+        <div class="nav-custom">
+            <h:link value="Vagas" outcome="/Home.xhtml" styleClass="nav-link"/>
+            <h:link value="Carros" outcome="/pages/Carros.xhtml" styleClass="nav-link"/>
+        </div>
+    </div>
+
+    <div class="custom-content overflow-hidden">
+        <p:growl id="messages" closable="true" showDetail="true">
+            <p:autoUpdate/>
+        </p:growl>
+        <ui:insert name="content"/>
+    </div>
+
+    <div class="custom-footer">
+        <p>Parking Spot - Uniasselvi - 2024</p>
+    </div>
+
+</h:body>
+
+</html>
