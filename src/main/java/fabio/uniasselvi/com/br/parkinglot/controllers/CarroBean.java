@@ -40,6 +40,7 @@ public class CarroBean {
     public void init() {
         carros = carroService.listarCarros();
         vagasDisponiveis = vagaService.listarVagasDisponiveis();
+        resetarValores();
     }
 
 
@@ -53,6 +54,7 @@ public class CarroBean {
             PrimeFaces.current().resetInputs("carroForm");
             PrimeFaces.current().executeScript("PF('incluirCarro').hide();");
             PrimeFaces.current().ajax().update(":tabelaCarros");
+            PrimeFaces.current().ajax().update("carroForm");
             carros = carroService.listarCarros();
             vagasDisponiveis = vagaService.listarVagasDisponiveis();
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Carro criado com sucesso"));
@@ -60,5 +62,12 @@ public class CarroBean {
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", e.getMessage()));
         }
 
+    }
+
+    private void resetarValores() {
+        placa = "";
+        modelo = "";
+        cor = "";
+        vagaId = null;
     }
 }

@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.primefaces.PrimeFaces;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -32,6 +31,7 @@ public class VagaBean {
     @PostConstruct
     public void init() {
         vagas = vagaService.listarVagas();
+        numero = null;
     }
 
 
@@ -45,6 +45,7 @@ public class VagaBean {
             PrimeFaces.current().resetInputs("vagaForm");
             PrimeFaces.current().executeScript("PF('incluirVaga').hide();");
             PrimeFaces.current().ajax().update(":tabelaVagas");
+            PrimeFaces.current().ajax().update("vagaForm");
             vagas = vagaService.listarVagas();
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Vaga criada com sucesso"));
         } catch (Exception e) {

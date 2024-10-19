@@ -22,8 +22,7 @@ services:
       - db
     links:
       - "db"
-    environment:
-      - RAILWAY_ENVIRONMENT=production
+
     networks:
       - parking-lot-network
 
