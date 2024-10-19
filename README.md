@@ -15,7 +15,7 @@ Certifique-se de que você tem as seguintes ferramentas instaladas em sua máqui
 
    ```bash
    git clone https://github.com/fabiomp-filho/uniasselvi-parking-lot.git
-   cd /parking-lot
+   cd uniasselvi-parking-lot
    ```
 
 2. **Certifique-se de que o `compose.yaml` está configurado corretamente**:
