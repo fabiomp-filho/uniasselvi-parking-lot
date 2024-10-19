@@ -93,7 +93,8 @@
             const links = document.querySelectorAll('.nav-custom a');
             let currentPath = window.location.pathname;
 
-            if (currentPath === "" || currentPath === "/Home.xhtml") {
+            console.log(currentPath)
+            if (currentPath === "/" || currentPath === "/Home.xhtml") {
                 currentPath = "/Home.xhtml";
             }
 
