@@ -93,8 +93,8 @@
             const links = document.querySelectorAll('.nav-custom a');
             let currentPath = window.location.pathname;
 
-            if (currentPath === "/" || currentPath === "/Home.xhtml") {
-                currentPath = "/parking_lot/Home.xhtml";
+            if (currentPath === "" || currentPath === "/Home.xhtml") {
+                currentPath = "/Home.xhtml";
             }
 
             links.forEach(link => {
